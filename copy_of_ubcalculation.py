@@ -15,25 +15,25 @@ def sort(nums, i = 1):
 
 print(sort(Tasks, 1))
 
-def UBcalcul(tasks):
+def ubcalcul(tasks):
   current_time = 0
-  somme_Ci = 0
+  somme_ci = 0
   tasks = sort(tasks)
   while(tasks != []):
     current_task = [x for x in tasks if x[0] <= current_time]
     if current_task != []:
       current_time += current_task[0][1]
-      somme_Ci += current_time
+      somme_ci += current_time
       tasks.remove(current_task[0])
     else:
       current_time = min(tasks)[0]
-  return somme_Ci
+  return somme_ci
 
-print(UBcalcul(Tasks))
+print(ubcalcul(Tasks))
 
-def LBcalcul(tasks):
+def lbcalcul(tasks):
   current_time = 0
-  somme_Ci = 0
+  somme_ci = 0
   #on trie les tâches selon les ri
   tasks = sort(tasks, 0)
   available_tasks = []
@@ -53,11 +53,11 @@ def LBcalcul(tasks):
       if available_tasks[0][1] == 0:
         #élimination du tâche et ajoute de sont Ci à notre somme
         available_tasks.pop(0)
-        somme_Ci += current_time
+        somme_ci += current_time
     if available_tasks != []:
       available_tasks[0][1] -= 1
 
     current_time +=1
-  return somme_Ci
+  return somme_ci
 
-print(LBcalcul(Tasks))
+print(lbcalcul(Tasks))
